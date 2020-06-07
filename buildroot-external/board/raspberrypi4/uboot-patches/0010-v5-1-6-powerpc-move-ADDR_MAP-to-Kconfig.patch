@@ -1,0 +1,43 @@
+diff --git a/lib/Kconfig b/lib/Kconfig
+index f18bf37..bab7486 100644
+--- a/lib/Kconfig
++++ b/lib/Kconfig
+@@ -1,5 +1,18 @@
+ menu "Library routines"
+ 
++config ADDR_MAP
++	bool "Enable support for non-identity virtual-physical mappings"
++	help
++	  Enables helper code for implementing non-identity virtual-physical
++	  memory mappings for 32bit CPUs.
++
++config SYS_NUM_ADDR_MAP
++	int "Size of the address-map table"
++	depends on ADDR_MAP
++	default 16
++	help
++	  Sets the number of entries in the virtual-physical mapping table.
++
+ config BCH
+ 	bool "Enable Software based BCH ECC"
+ 	help
+diff --git a/scripts/config_whitelist.txt b/scripts/config_whitelist.txt
+index 61d025f..554f31b 100644
+--- a/scripts/config_whitelist.txt
++++ b/scripts/config_whitelist.txt
+@@ -15,7 +15,6 @@ CONFIG_ACX517AKN
+ CONFIG_ACX544AKN
+ CONFIG_ADDRESS
+ CONFIG_ADDR_AUTO_INCR_BIT
+-CONFIG_ADDR_MAP
+ CONFIG_ADNPESC1
+ CONFIG_AEABI
+ CONFIG_AEMIF_CNTRL_BASE
+@@ -3281,7 +3280,6 @@ CONFIG_SYS_NS16550_MEM32
+ CONFIG_SYS_NS16550_PORT_MAPPED
+ CONFIG_SYS_NS16550_REG_SIZE
+ CONFIG_SYS_NS16550_SERIAL
+-CONFIG_SYS_NUM_ADDR_MAP
+ CONFIG_SYS_NUM_CPC
+ CONFIG_SYS_NUM_FM1_10GEC
+ CONFIG_SYS_NUM_FM1_DTSEC
